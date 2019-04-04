@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "959043566971",
+    "firebase_url": "https://circles-23b26.firebaseio.com",
+    "project_id": "circles-23b26",
+    "storage_bucket": "circles-23b26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:959043566971:android:949ce7f73925d430",
+        "android_client_info": {
+          "package_name": "com.codestew.circles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "959043566971-c5l4qvh3mjbvj5sid0trf2s432dqt6u4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codestew.circles",
+            "certificate_hash": "7bef34851b63fdc197547d852eaaea1b6a5168ea"
+          }
+        },
+        {
+          "client_id": "959043566971-3s1dth2gvijpcmceoej9e1jah92a6t9q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjtXRdcvQooyVYJkZnCynN9x3YS2_4EGo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "959043566971-3s1dth2gvijpcmceoej9e1jah92a6t9q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
