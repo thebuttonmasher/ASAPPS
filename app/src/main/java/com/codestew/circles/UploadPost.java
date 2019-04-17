@@ -36,6 +36,7 @@ public class UploadPost extends AppCompatActivity implements AdapterView.OnItemS
     private Button upPhoto;
     private Uri imageUri;
     private EditText titl;
+    private Button actualUpload;
     private ImageView imgv;
     public Spinner spinner;
     public String cirOption;
@@ -83,13 +84,16 @@ public class UploadPost extends AppCompatActivity implements AdapterView.OnItemS
                 String img = createRef(imageUri.getLastPathSegment());
                 data.put("Title", titl.getText().toString());
                 data.put("img",img);
-                FirebaseFirestore.getInstance().collection("/Circles/" + cirOption + "/posts")
+                FirebaseFirestore.getInstance().collection("/Circles/" + cirOption + "/Posts")
                         .add(data)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Log.d("TAG", "MSG7 : DocumentSnapshot written with ID: " + documentReference.getId());
                                 Intent intent = new Intent(UploadPost.this,MainFeed.class);
+                                Bundle b = new Bundle();
+                                b.putString("circle",cirOption);
+                                intent.putExtras(b);
                                 startActivity(intent);
                             }
                         });
@@ -101,7 +105,7 @@ public class UploadPost extends AppCompatActivity implements AdapterView.OnItemS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_post);
-        cirOption = "FirstCircle";
+
         titl = (EditText) findViewById(R.id.EDIT_TITLE);
         spinner = (Spinner) findViewById(R.id.circleChoice);
 
@@ -135,6 +139,13 @@ public class UploadPost extends AppCompatActivity implements AdapterView.OnItemS
 
         upPhoto = (Button) findViewById(R.id.UP_PHOTO);
         imgv = (ImageView) findViewById(R.id.imageView2);
+        actualUpload = (Button) findViewById(R.id.UPLOAD_POST);
+        actualUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                upload();
+            }
+        });
         upPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

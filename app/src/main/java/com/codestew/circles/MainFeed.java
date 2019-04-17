@@ -27,12 +27,22 @@ public class MainFeed extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
+    private String circle;
     public List<ImagePost> listimgpost = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_feed);
+        Bundle b = getIntent().getExtras();
+        if(b != null)
+        {
+            circle = b.getString("circle");
+        }
+        else
+            {
+                circle = "FirstCircle";
+            }
         //toolbar init
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,7 +66,7 @@ public class MainFeed extends AppCompatActivity
        // loadData();
        // Log.d("MSG","MESSAGE4 : " + listimgpost.get(0).getTitle());
         FirebaseFirestore.getInstance()
-                .collection("/Circles/FirstCircle/Posts")
+                .collection("/Circles/"+ circle +"/Posts")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -127,7 +137,7 @@ public class MainFeed extends AppCompatActivity
         if (id == R.id.up_post) {
             startActivity(new Intent(MainFeed.this, UploadPost.class));
         } else if (id == R.id.nav_gallery) {
-
+            startActivity(new Intent(MainFeed.this,ChangeCircle.class));
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {

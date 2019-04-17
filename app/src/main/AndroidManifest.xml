@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UploadPost"></activity>
+        <activity android:name=".ChangeCircle"></activity>
+        <activity android:name=".UploadPost" />
         <activity
             android:name=".MainFeed"
             android:label="@string/title_activity_main_feed"
