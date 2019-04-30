@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -37,11 +38,13 @@ public class MainFeed extends AppCompatActivity
         Bundle b = getIntent().getExtras();
         if(b != null)
         {
-            circle = b.getString("circle");
+            circle = b.getString("Circle");
+            Log.d("MSG","MESSAGE CIRCLE = " + circle);
         }
         else
             {
-                circle = "FirstCircle";
+                circle = "/Circles/FirstCircle/Posts";
+                Log.d("MSG","MESSAGE2 CIRCLE = " + circle);
             }
         //toolbar init
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -66,7 +69,7 @@ public class MainFeed extends AppCompatActivity
        // loadData();
        // Log.d("MSG","MESSAGE4 : " + listimgpost.get(0).getTitle());
         FirebaseFirestore.getInstance()
-                .collection("/Circles/"+ circle +"/Posts")
+                .collection(circle)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

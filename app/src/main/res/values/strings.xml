@@ -8,4 +8,6 @@
     <string name="nav_header_subtitle">ok</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="postButtin">save</string>
+    <string name="post_image">post Image</string>
 </resources>

@@ -21,9 +21,15 @@
 
             <ImageView
                 android:id="@+id/postImage"
-                android:contentDescription="post Image"
+                android:contentDescription="@string/post_image"
                 android:layout_width="347dp"
                 android:layout_height="151dp" />
+
+            <Button
+                android:id="@+id/postSaveButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/postButtin" />
         </LinearLayout>
 
 

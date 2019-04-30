@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -31,13 +32,15 @@ public class ChangeCircle extends AppCompatActivity implements AdapterView.OnIte
     private String cirName2;
     private Spinner spinner;
     private ArrayList<String> circlesName;
-
+    private Button savedCirc;
+//"/Circles/"+ cirName2 +"/Posts"
     private void changeCircle()
     {
 
         Intent intent = new Intent(ChangeCircle.this,MainFeed.class);
         Bundle b = new Bundle();
-        b.putString("Circle",cirName2);
+        b.putString("Circle","/Circles/"+ cirName2 +"/Posts");
+        Log.d("msg","SHWOOP : " + cirName2);
         intent.putExtras(b);
         startActivity(intent);
     }
@@ -51,7 +54,7 @@ public class ChangeCircle extends AppCompatActivity implements AdapterView.OnIte
                     public void onSuccess(Void aVoid) {
                         Intent intent = new Intent(ChangeCircle.this,MainFeed.class);
                         Bundle b = new Bundle();
-                        b.putString("Circle",cirName.getText().toString());
+                        b.putString("Circle","/Circles/"+ cirName.getText().toString() +"/Posts");
                         intent.putExtras(b);
                         startActivity(intent);
 
@@ -67,6 +70,18 @@ public class ChangeCircle extends AppCompatActivity implements AdapterView.OnIte
         createCir = (Button) findViewById(R.id.CREATE_CIRCLE);
         cirName = (EditText) findViewById(R.id.CIRCLE_NAME);
         spinner = (Spinner) findViewById(R.id.spin2win);
+        savedCirc = (Button) findViewById(R.id.SAVEDCIRC);
+        savedCirc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ChangeCircle.this,MainFeed.class);
+                Bundle b = new Bundle();
+                b.putString("Circle","/UserCircles/" + FirebaseAuth.getInstance().getCurrentUser().getEmail() +"/Posts");
+
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
         circlesName = new ArrayList<>();
         createCir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +116,19 @@ public class ChangeCircle extends AppCompatActivity implements AdapterView.OnIte
                             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                                     ChangeCircle.this,android.R.layout.simple_spinner_dropdown_item,circlesName);
                             spinner.setAdapter(arrayAdapter);
+                            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                    cirName2 = parent.getItemAtPosition(position).toString();
+                                    Log.d("msg","SHWOOP22 : " + cirName2);
+
+                                }
+
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
+
+                                }
+                            });
 
                         }
                     }
@@ -114,6 +142,7 @@ public class ChangeCircle extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         cirName2 = parent.getItemAtPosition(position).toString();
+        Log.d("msg","SHWOOP22 : " + cirName2);
     }
 
     @Override

@@ -4,6 +4,7 @@ public class ImagePost {
     private String Title;
     private String  img;
 
+
     public String getTitle() {
         return Title;
     }
@@ -15,6 +16,7 @@ public class ImagePost {
     public ImagePost(String title, String img) {
         Title = title;
         this.img = img;
+
     }
 
 

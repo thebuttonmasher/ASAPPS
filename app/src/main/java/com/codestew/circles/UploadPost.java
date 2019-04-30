@@ -65,7 +65,7 @@ public class UploadPost extends AppCompatActivity implements AdapterView.OnItemS
         }
     }
 
-
+    //"/Circles/"+ cirName2 +"/Posts"
     private void upload()
     {
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -92,7 +92,7 @@ public class UploadPost extends AppCompatActivity implements AdapterView.OnItemS
                                 Log.d("TAG", "MSG7 : DocumentSnapshot written with ID: " + documentReference.getId());
                                 Intent intent = new Intent(UploadPost.this,MainFeed.class);
                                 Bundle b = new Bundle();
-                                b.putString("circle",cirOption);
+                                b.putString("Circle","/Circles/" + cirOption + "/Posts");
                                 intent.putExtras(b);
                                 startActivity(intent);
                             }
